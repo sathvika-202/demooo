@@ -26,14 +26,13 @@ jobs:
           semgrep scan --config auto --error .
 
   check-dependencies:
-    runs-on: ubuntu-latest
-    steps:
+     runs-on: ubuntu-latest
+     steps:
       - uses: actions/checkout@v4
       - name: Scan libraries and Dockerfile (Trivy)
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          scan-type: fs
-          scan-ref: .
-          scanners: vuln,misconfig
-          severity: HIGH,CRITICAL
-          exit-code: 1
+        run: |
+          docker run --rm -v "$PWD":/project aquasec/trivy:latest fs \
+            --scanners vuln,misconfig \
+            --severity HIGH,CRITICAL \
+            --exit-code 1 \
+            /project
