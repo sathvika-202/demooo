@@ -4,7 +4,7 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-API_KEY = "AKIAZXCVBNMLKJHG2345" 
+API_KEY = os.environ.get("API_KEY")
 
 @app.route("/user")
 def get_user():
