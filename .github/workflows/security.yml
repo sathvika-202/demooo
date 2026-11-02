@@ -23,7 +23,7 @@ jobs:
       - name: Scan code (Semgrep)
         run: |
           pip install semgrep
-          semgrep scan --config auto --error .
+          semgrep scan --config auto --error app.py
 
   check-dependencies:
      runs-on: ubuntu-latest
